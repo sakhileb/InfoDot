@@ -17,7 +17,6 @@ export default defineConfig({
                 manualChunks: {
                     'vendor': [
                         'alpinejs',
-                        '@livewire/livewire',
                     ],
                 },
             },

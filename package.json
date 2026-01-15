@@ -8,6 +8,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/postcss": "^4.1.18",
         "@tailwindcss/typography": "^0.5.10",
         "@tailwindcss/vite": "^4.0.0",
         "alpinejs": "^3.14.3",
@@ -20,6 +21,7 @@
         "postcss": "^8.4.32",
         "pusher-js": "^8.4.0-rc2",
         "tailwindcss": "^4.0.0",
+        "terser": "^5.44.1",
         "vite": "^7.0.7"
     }
 }
