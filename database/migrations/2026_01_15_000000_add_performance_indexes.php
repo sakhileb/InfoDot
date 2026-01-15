@@ -53,7 +53,7 @@ return new class extends Migration
             $table->unique(['user_id', 'likable_type', 'likable_id'], 'unique_user_like');
         });
 
-        Schema::table('steps', function (Blueprint $table) {
+        Schema::table('solutions_step', function (Blueprint $table) {
             // Composite index for solution's steps
             $table->index(['solution_id', 'created_at']);
         });
@@ -108,7 +108,7 @@ return new class extends Migration
             $table->dropUnique('unique_user_like');
         });
 
-        Schema::table('steps', function (Blueprint $table) {
+        Schema::table('solutions_step', function (Blueprint $table) {
             $table->dropIndex(['solution_id', 'created_at']);
         });
 
