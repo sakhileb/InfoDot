@@ -1,0 +1,24 @@
+{
+  "_vendor-BYut7E6D.js": {
+    "file": "assets/vendor-BYut7E6D.js",
+    "name": "vendor"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-i4rfOcQp.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-D0clupA6.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-BYut7E6D.js"
+    ]
+  }
+}
