@@ -30,15 +30,15 @@
         </script>
     @endif
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-slate-950 text-slate-100">
     <x-jet-banner />
 
-    <div class="min-h-screen bg-gray-100" id="app">
+    <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.12),_transparent_28%),linear-gradient(180deg,_#020617_0%,_#0f172a_45%,_#111827_100%)]" id="app">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="bg-white shadow">
+            <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
