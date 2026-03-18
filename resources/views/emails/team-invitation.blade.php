@@ -1,0 +1,1 @@
+@include('vendor.jetstream.mail.team-invitation')
