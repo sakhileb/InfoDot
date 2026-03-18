@@ -1,7 +1,7 @@
-<nav x-data="{ open: false }" class="border-b border-slate-800 bg-slate-950/90 text-slate-100 backdrop-blur">
+<nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 text-slate-200 backdrop-blur">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex h-16 justify-between">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
@@ -11,16 +11,16 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden items-center space-x-3 sm:ml-10 sm:flex">
-                    <a href="{{ route('questions') }}" class="rounded-xl px-4 py-2 text-sm font-medium transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-sky-500/20 text-sky-200 ring-1 ring-sky-400/30' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                <div class="hidden items-center space-x-2 sm:ml-8 sm:flex">
+                    <a href="{{ route('questions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-blue-600 text-white shadow-[0_10px_20px_-12px_rgba(37,99,235,0.9)]' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
                         {{ __('Questions') }}
                     </a>
-                    <a href="{{ route('solutions') }}" class="rounded-xl px-4 py-2 text-sm font-medium transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-sky-500/20 text-sky-200 ring-1 ring-sky-400/30' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                    <a href="{{ route('solutions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-blue-600 text-white shadow-[0_10px_20px_-12px_rgba(37,99,235,0.9)]' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
                         {{ __('Business Solutions') }}
                     </a>
                 </div>
             </div>
-            <div class="w-96 my-2 hidden lg:block">
+            <div class="my-2 hidden w-96 lg:block">
                 <livewire:search/>
             </div>
 
@@ -31,7 +31,7 @@
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-slate-800 text-sm leading-4 font-medium rounded-md text-slate-300 bg-slate-900 hover:bg-slate-800 hover:text-white focus:outline-none focus:bg-slate-800 active:bg-slate-800 transition">
+                                    <button type="button" class="inline-flex items-center rounded-md border border-slate-700 bg-slate-900 px-3 py-2.5 text-sm font-medium leading-5 text-slate-200 shadow-sm transition hover:border-blue-500/50 hover:bg-slate-800 hover:text-blue-300 focus:outline-none focus:border-blue-500/50 focus:bg-slate-800 active:bg-slate-800">
                                         {{ __('Manage Team')}}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -44,7 +44,7 @@
                             <x-slot name="content">
                                 <div class="w-60">
                                     <!-- Team Management -->
-                                    <div class="block px-4 py-2 text-xs text-slate-500">
+                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
                                         {{ __('Manage Team') }}
                                     </div>
 
@@ -59,10 +59,10 @@
                                         </x-jet-dropdown-link>
                                     @endcan
 
-                                    <div class="border-t border-slate-800"></div>
+                                    <div class="border-t border-slate-700"></div>
 
                                     <!-- Team Switcher -->
-                                    <div class="block px-4 py-2 text-xs text-slate-500">
+                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
                                         {{ __('Switch Teams') }}
                                     </div>
 
@@ -80,12 +80,12 @@
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Auth::user()->profile_photo_path != null)
-                                    <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-sky-500 transition">
+                                    <button class="flex rounded-full border-2 border-transparent text-sm transition focus:outline-none focus:border-blue-500">
                                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-slate-300 bg-transparent hover:text-white focus:outline-none transition">
+                                    <button type="button" class="inline-flex items-center rounded-md border border-transparent bg-transparent px-3 py-2.5 text-sm font-medium leading-5 text-slate-200 transition hover:text-blue-300 focus:outline-none">
                                         <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->avatar() }}" alt="{{ Auth::user()->name }}" />
                                     </button>
                                 </span>
@@ -94,7 +94,7 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-slate-500">
+                            <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
                                 {{ __('Manage Account') }}
                             </div>
 
@@ -108,7 +108,7 @@
                                 </x-jet-dropdown-link>
                             @endif
 
-                            <div class="border-t border-slate-800"></div>
+                            <div class="border-t border-slate-700"></div>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -127,7 +127,7 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:bg-slate-800 focus:text-white transition">
+                <button @click="open = ! open" class="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition hover:bg-slate-800 hover:text-blue-300 focus:outline-none focus:bg-slate-800 focus:text-blue-300">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -139,17 +139,17 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="space-y-1 bg-slate-950 px-4 pt-2 pb-3">
-            <a href="{{ route('questions') }}" class="block rounded-xl px-4 py-3 text-sm font-medium transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-sky-500/20 text-sky-200 ring-1 ring-sky-400/30' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+        <div class="space-y-2 bg-slate-950 px-4 pt-3 pb-4">
+            <a href="{{ route('questions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
                 {{ __('Questions') }}
             </a>
-            <a href="{{ route('solutions') }}" class="block rounded-xl px-4 py-3 text-sm font-medium transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-sky-500/20 text-sky-200 ring-1 ring-sky-400/30' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+            <a href="{{ route('solutions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
                 {{ __('Business Solutions') }}
             </a>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-slate-800 bg-slate-950">
+        <div class="border-t border-slate-800 bg-slate-950 pt-4 pb-1">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
@@ -162,12 +162,12 @@
                 @endif
 
                 <div>
-                    <div class="font-medium text-base text-slate-100">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-slate-400">{{ Auth::user()->email }}</div>
+                    <div class="text-base font-medium text-slate-100">{{ Auth::user()->name }}</div>
+                    <div class="text-sm font-medium text-slate-400">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
-            <div class="mt-3 space-y-1">
+            <div class="mt-3 space-y-2">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show', ['id' => Auth::id()]) }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
@@ -192,9 +192,9 @@
 
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="border-t border-slate-800"></div>
+                    <div class="border-t border-slate-700"></div>
 
-                    <div class="block px-4 py-2 text-xs text-slate-500">
+                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
                         {{ __('Manage Team') }}
                     </div>
 
@@ -209,10 +209,10 @@
                         </x-jet-responsive-nav-link>
                     @endcan
 
-                    <div class="border-t border-slate-800"></div>
+                    <div class="border-t border-slate-700"></div>
 
                     <!-- Team Switcher -->
-                    <div class="block px-4 py-2 text-xs text-slate-500">
+                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
                         {{ __('Switch Teams') }}
                     </div>
 

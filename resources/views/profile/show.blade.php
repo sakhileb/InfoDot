@@ -10,9 +10,9 @@
             </svg>
         </div>
     </section>
-    <section class="relative py-16 bg-gray-300">
+    <section class="relative py-16 bg-slate-950">
         <div class="container mx-auto px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+            <div class="relative flex flex-col min-w-0 break-words bg-slate-900 w-full mb-6 shadow-xl rounded-lg -mt-64">
                 <div class="px-6">
                     <div class="flex flex-wrap justify-center">
                         <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center text-center mx-auto">
@@ -35,30 +35,30 @@
                         <div class="w-full lg:w-4/12 px-4 lg:order-1">
                             <ul class="flex justify-center py-4 lg:pt-4 pt-8" id="tabs-id">
                                 <li class="mr-4 p-3 text-center">
-                                    <span class="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-200">
                                         {{ $user->associates->count() }}
 
                                     </span>
-                                    <span class="text-sm text-gray-500">
+                                    <span class="text-sm text-slate-400">
                                         Associates
                                     </span>
                                 </li>
                                 <li class="mr-4 p-3 text-center cursor-pointer">
                                     <a onclick="changeAtiveTab(event,'questions')">
-                                        <span class="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-200">
                                             {{ $user->questions->count() }}
                                         </span>
-                                        <span class="text-sm text-gray-500">
+                                        <span class="text-sm text-slate-400">
                                             Questions
                                         </span>
                                     </a>
                                 </li>
                                 <li class="lg:mr-4 p-3 text-center cursor-pointer">
                                     <a onclick="changeAtiveTab(event,'solutions')">
-                                        <span class="text-xl font-bold block uppercase tracking-wide text-gray-700">
+                                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-200">
                                             {{ $user->solutions->count() }}
                                         </span>
-                                        <span class="text-sm text-gray-500">
+                                        <span class="text-sm text-slate-400">
                                             Solutions
                                         </span>
                                     </a>
@@ -67,23 +67,23 @@
                         </div>
                     </div>
                     <div class="text-center mt-12">
-                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-slate-100 mb-2">
                             {{ $user->name }}
                         </h3>
-                    <div class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                        <i class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>
+                    <div class="text-sm leading-normal mt-0 mb-2 text-slate-400 font-bold uppercase">
+                        <i class="fas fa-map-marker-alt mr-2 text-lg text-slate-400"></i>
                         Los Angeles, California
                     </div>
-                    <div class="mb-2 text-gray-700 mt-10">
-                        <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
+                    <div class="mb-2 text-slate-200 mt-10">
+                        <i class="fas fa-briefcase mr-2 text-lg text-slate-400"></i>
                         Solution Manager - Creative Tim Officer
                     </div>
-                    <div class="mb-2 text-gray-700">
-                        <i class="fas fa-university mr-2 text-lg text-gray-500"></i>
+                    <div class="mb-2 text-slate-200">
+                        <i class="fas fa-university mr-2 text-lg text-slate-400"></i>
                         University of Computer Science
                     </div>
                     </div>
-                    <div class="mt-10 py-10 border-t border-gray-300 text-center">
+                    <div class="mt-10 py-10 border-t border-slate-700 text-center">
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-9/12 px-4">
                                 <div class="flex flex-wrap">
@@ -94,14 +94,14 @@
                                                     @if(!empty($user->questions))
                                                         @foreach($user->questions as $question)
                                                             <div aria-label="group of cards" tabindex="0" class="focus:outline-none py-2 w-full">
-                                                                <div tabindex="0" aria-label="card 1" class="mb-7 bg-white p-6 shadow rounded">
-                                                                    <div class="flex items-center border-b border-gray-200 pb-4 mb-2">
+                                                                <div tabindex="0" aria-label="card 1" class="mb-7 bg-slate-900 p-6 shadow rounded">
+                                                                    <div class="flex items-center border-b border-slate-700 pb-4 mb-2">
                                                                         <div class="flex items-start justify-between w-full">
                                                                             <div class="pl-3 w-full text-left line-clamp-1">
-                                                                                <a href="{{ route('questions.view', ['qid' => $question->id]) }}" tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-gray-800">
+                                                                                <a href="{{ route('questions.view', ['qid' => $question->id]) }}" tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-slate-100">
                                                                                     {{ $question->question }}
                                                                                 </a>
-                                                                                <p tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-gray-500">
+                                                                                <p tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-slate-400">
                                                                                     {{ $question->created_at->diffForHumans() }}
                                                                                 </p>
                                                                             </div>
@@ -111,13 +111,13 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="px-2 text-left">
-                                                                        <a href="{{ route('questions.view', ['qid' => $question->id]) }}" tabindex="0" class="focus:outline-none text-sm leading-5 py-4 text-gray-600 mt-3 pt-3 line-clamp-3">
+                                                                        <a href="{{ route('questions.view', ['qid' => $question->id]) }}" tabindex="0" class="focus:outline-none text-sm leading-5 py-4 text-slate-300 mt-3 pt-3 line-clamp-3">
                                                                             {{ $question->description }}
                                                                         </a>
 
                                                                     </div>
-                                                                    <div class="flex items-center justify-center border-t border-gray-200 pt-4 mt-3">
-                                                                        <a href="{{ route('questions.view', ['qid' => $question->id]) }}" class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" type="button" style="transition: all 0.15s ease 0s;">
+                                                                    <div class="flex items-center justify-center border-t border-slate-700 pt-4 mt-3">
+                                                                        <a href="{{ route('questions.view', ['qid' => $question->id]) }}" class="bg-slate-900 text-slate-100 active:bg-slate-800 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" type="button" style="transition: all 0.15s ease 0s;">
                                                                             View Question
                                                                             </a>
                                                                     </div>
@@ -132,22 +132,22 @@
                                                     @if(!empty($user->solutions))
                                                         @foreach($user->solutions as $solution)
                                                             <div aria-label="group of cards" tabindex="0" class="focus:outline-none py-2 w-full">
-                                                                <div tabindex="0" aria-label="card 1" class="mb-7 bg-white p-6 shadow rounded">
-                                                                    <div class="flex items-center border-b border-gray-200 pb-4 mb-2">
+                                                                <div tabindex="0" aria-label="card 1" class="mb-7 bg-slate-900 p-6 shadow rounded">
+                                                                    <div class="flex items-center border-b border-slate-700 pb-4 mb-2">
                                                                         {{-- <img src="https://cdn.tuk.dev/assets/components/misc/doge-coin.png" alt="coin avatar" class="w-12 h-12 rounded-full" /> --}}
                                                                         <div class="flex items-start justify-between w-full">
                                                                             <div class="pl-3 w-full text-left">
-                                                                                <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-gray-800 line-clamp-3">
+                                                                                <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-slate-100 line-clamp-3">
                                                                                     {{ $solution->solution_title }}
                                                                                 </a>
-                                                                                <p tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-gray-500">
+                                                                                <p tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-slate-400">
                                                                                     {{ $solution->created_at->diffForHumans() }}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="px-2 text-left">
-                                                                        <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" tabindex="0" class="focus:outline-none text-sm leading-5 py-4 text-gray-600 mt-3 pt-3 line-clamp-3">
+                                                                        <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" tabindex="0" class="focus:outline-none text-sm leading-5 py-4 text-slate-300 mt-3 pt-3 line-clamp-3">
                                                                             {{ $solution->solution_description }}
                                                                         </a>
                                                                         @if(!empty($solution->tags))
@@ -156,15 +156,15 @@
                                                                                     $tags = explode(',', $solution->tags) ?? '';
                                                                                 @endphp
                                                                                 @foreach($tags as $tag)
-                                                                                    <div class="py-2 mx-1 my-3 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                                                                                    <div class="py-2 mx-1 my-3 px-4 text-xs leading-3 text-blue-200 rounded-full bg-blue-900/50">
                                                                                         {{ $tag }}
                                                                                     </div>
                                                                                 @endforeach
                                                                             </div>
                                                                         @endif
                                                                     </div>
-                                                                    <div class="flex items-center justify-center border-t border-gray-200 pt-4 mt-3">
-                                                                        <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" type="button" style="transition: all 0.15s ease 0s;">
+                                                                    <div class="flex items-center justify-center border-t border-slate-700 pt-4 mt-3">
+                                                                        <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" class="bg-slate-900 text-slate-100 active:bg-slate-800 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" type="button" style="transition: all 0.15s ease 0s;">
                                                                             View Solution
                                                                             </a>
                                                                     </div>
