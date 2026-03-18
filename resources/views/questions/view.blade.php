@@ -1,37 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between w-full">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-start items-center">
-            {{ __('Read Question') }}
+        <div class="flex items-center justify-between gap-4">
+            <h2 class="text-xl font-semibold leading-tight text-slate-800">
+                {{ __('Question Details') }}
             </h2>
-            <div>
-                <a href="{{ route('seek') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-search mr-1" aria-hidden="true"></i> Seek
-                </a>
-                <a href="{{ route('add') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
-                </a>
-            </div>
+            <a href="{{ route('questions') }}" class="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50">
+                Back to Questions
+            </a>
         </div>
     </x-slot>
-    <div class="flex">
-        @include('partials.aside-left')
 
-        <main class="w-full">
-            <div class="px-4 overflow-y-scroll">
-                <h1 class="text-gray-900 m-3 text-2xl">Question By {{ $question->user->name }}</h1>
-                <hr class="my-3 text-gray-900">
-                    <h3 class="text-lg m-3 font-medium text-gray-900 capitalize">
-                        Title: {{ $question->question }}</h3>
-                    <p class="m-3 text-sm text-gray-600">
-                        Description: {{ $question->description }}
-                    </p>
-                    <livewire:comments :model="$question" :question="$question"/>
-                    <div class="px-4 sm:px-0"></div>
+    <x-dashboard-shell>
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-sm text-slate-500">Asked by {{ $question->user->name }}</p>
+            <h1 class="mt-2 text-2xl font-semibold text-slate-900">{{ $question->question }}</h1>
+            <p class="mt-4 text-sm leading-6 text-slate-700">{{ $question->description }}</p>
+
+            <div class="mt-6 border-t border-slate-200 pt-6">
+                <livewire:comments :model="$question" :question="$question"/>
             </div>
-        </main>
+        </article>
+    </x-dashboard-shell>
 
-        @include('partials.aside-right')
-    </div>
     @include('layouts.footer')
 </x-app-layout>

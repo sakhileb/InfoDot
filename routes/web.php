@@ -44,6 +44,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user/profile/edit', 'App\Http\Controllers\PagesController@edit')->name('profile.edit');
     Route::get('/user/profile/{id}', 'App\Http\Controllers\PagesController@show')->name('profile.show');
 
+    // -------------------------------------------------------
+    // Sub Services
+    // -------------------------------------------------------
+    Route::view('/sub-services/dot-files', 'sub-services.dot-files')->name('subservices.files');
+    Route::view('/sub-services/dot-docs', 'sub-services.dot-docs')->name('subservices.docs');
+    Route::view('/sub-services/dot-sheets', 'sub-services.dot-sheets')->name('subservices.sheets');
+    Route::view('/sub-services/dot-press', 'sub-services.dot-press')->name('subservices.press');
+    Route::view('/sub-services/dot-forms', 'sub-services.dot-forms')->name('subservices.forms');
+    Route::view('/sub-services/dot-engage', 'sub-services.dot-engage')->name('subservices.engage');
+
 });
 
 // -------------------------------------------------------

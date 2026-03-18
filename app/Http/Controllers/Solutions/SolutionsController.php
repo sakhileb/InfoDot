@@ -11,7 +11,13 @@ class SolutionsController extends Controller
 {
     public function index()
     {
-        return view('solutions.index');
+        $solutions = Solutions::withCount(['likes', 'comments'])
+            ->latest()
+            ->get();
+
+        return view('solutions.index', [
+            'solutions' => $solutions,
+        ]);
     }
 
     public function create()
@@ -57,10 +63,7 @@ class SolutionsController extends Controller
             $solution_step->save();
         }
 
-        $solutions = Solutions::all();
-
-
-        return view('solutions.index')->with(['solutions' => $solutions]);
+        return redirect()->route('solutions');
     }
 
     public function view_solution($id)

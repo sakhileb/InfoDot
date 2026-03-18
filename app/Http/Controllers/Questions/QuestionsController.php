@@ -13,7 +13,13 @@ class QuestionsController extends Controller
 {
     public function index()
     {
-        return view('questions.index');
+        $questions = Questions::withCount(['likes', 'comments'])
+            ->latest()
+            ->get();
+
+        return view('questions.index', [
+            'questions' => $questions,
+        ]);
     }
 
     public function seek()

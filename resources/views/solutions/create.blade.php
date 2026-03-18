@@ -1,27 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between w-full">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-start items-center">
-            {{ __('Add Solution') }}
+        <div class="flex items-center justify-between gap-4">
+            <h2 class="text-xl font-semibold leading-tight text-slate-800">
+                {{ __('Add Solution') }}
             </h2>
-            <div>
-                <a href="{{ route('seek') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-search mr-1" aria-hidden="true"></i> Seek
-                </a>
-                <a href="{{ route('add') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
-                </a>
-            </div>
+            <a href="{{ route('solutions') }}" class="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50">
+                Back to Solutions
+            </a>
         </div>
     </x-slot>
-    <div class="flex">
-        @include('partials.aside-left')
 
-        <main class="w-full">
-            <div class="col-span-2 px-4 overflow-y-scroll">
-                <h1 class="text-gray-900 m-3 text-2xl">Solution Contribution</h1>
-                <hr class="my-3 text-gray-900">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <x-dashboard-shell>
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h1 class="text-2xl font-semibold text-slate-900">Solution Contribution</h1>
+            <p class="mt-2 text-sm text-slate-600">Create a practical, step-by-step solution the community can apply immediately.</p>
+
+            <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
                     <div class="form">
                         <form class="w-full" method="POST" action="{{ route('solutions.add') }}" onkeydown="return event.key != 'Enter';">
                             @csrf
@@ -85,9 +79,9 @@
                                 </div>
                             </div>
                             <div id="steps">
-                                <hr class="my-3 text-gray-900">
+                                <hr class="my-3 text-slate-300">
                                     <h4 class="text-gray-900 m-3 text-2xl">Step 1:</h4>
-                                <hr class="my-3 text-gray-900">
+                                <hr class="my-3 text-slate-300">
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full md:w-full px-3 mb-6">
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="solution_title">Heading:</label>
@@ -103,8 +97,8 @@
                             </div>
 
                             <div class="flex flex-wrap -mx-3 mb-6 justify-end">
-                                <input type="button" id="more_fields" class="btn m-3" onclick="add_steps();" value="Add Step">
-                                <button class="btn m-3" type="submit">Done</button>
+                                <input type="button" id="more_fields" class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50" onclick="add_steps();" value="Add Step">
+                                <button class="rounded-xl bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800" type="submit">Done</button>
                             </div>
                         </form>
                     </div>
@@ -176,12 +170,10 @@
                             </li>
                         </ul>
                     </div>
-                </div>
             </div>
-        </main>
+        </div>
+    </x-dashboard-shell>
 
-        @include('partials.aside-right')
-    </div>
     @include('layouts.footer')
     @push('js')
 

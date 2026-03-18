@@ -1,30 +1,42 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between w-full">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-start items-center">
-            {{ __('Business Solutions') }}
+        <div class="flex items-center justify-between gap-4">
+            <h2 class="text-xl font-semibold leading-tight text-slate-800">
+                {{ __('Solutions') }}
             </h2>
-            <div>
-                <a href="{{ route('seek') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-search mr-1" aria-hidden="true"></i> Seek
-                </a>
-                <a href="{{ route('add') }}" class="justify-items-end btn rounded-full">
-                    <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
-                </a>
-            </div>
+            <a href="{{ route('add') }}" class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800">
+                <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add Solution
+            </a>
         </div>
     </x-slot>
-    <div class="flex z-0">
-        @include('partials.aside-left')
 
-        <main class="bg-cover bg-base-200 w-full z-0">
-            <div class="col-span-2 px-4 overflow-y-scroll">
-                <livewire:solution-list />
-            </div>
-        </main>
+    <x-dashboard-shell>
+        <div class="space-y-4">
+            @forelse ($solutions as $solution)
+                <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" class="block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                    <div class="flex items-start justify-between gap-4">
+                        <h3 class="text-lg font-semibold text-slate-900">{{ $solution->solution_title }}</h3>
+                        <span class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                            {{ $solution->duration }} {{ $solution->duration_type }}
+                        </span>
+                    </div>
 
-        @include('partials.aside-right')
+                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                        {{ \Illuminate\Support\Str::limit($solution->solution_description, 180) }}
+                    </p>
 
-    </div>
+                    <div class="mt-4 flex items-center gap-5 text-sm text-slate-500">
+                        <span><i class="fa fa-heart mr-1" aria-hidden="true"></i>{{ $solution->likes_count }} likes</span>
+                        <span><i class="fa fa-comment mr-1" aria-hidden="true"></i>{{ $solution->comments_count }} comments</span>
+                    </div>
+                </a>
+            @empty
+                <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">
+                    No solutions yet. Add your first business solution.
+                </div>
+            @endforelse
+        </div>
+    </x-dashboard-shell>
+
     @include('layouts.footer')
 </x-app-layout>
