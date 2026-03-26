@@ -13,8 +13,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <!-- Design-system fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <!-- Styles -->
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -30,15 +30,15 @@
         </script>
     @endif
 </head>
-<body class="font-sans antialiased bg-slate-950 text-slate-100">
+<body class="antialiased bg-[#0b1326] text-[#dae2fd]" style="font-family:'Inter',sans-serif;">
     <x-jet-banner />
 
-    <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.28),_transparent_36%),linear-gradient(180deg,_#020617_0%,_#0b1120_46%,_#111827_100%)]" id="app">
+    <div class="min-h-screen bg-[radial-gradient(ellipse_at_top,_rgba(41,98,255,0.12),_transparent_50%),linear-gradient(180deg,_#060e20_0%,_#0b1326_40%,_#0b1326_100%)]" id="app">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="border-b border-slate-800/80 bg-slate-950/85 backdrop-blur">
+            <header class="border-b border-[#434656]/20 bg-[#0b1326]/90 backdrop-blur-xl">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

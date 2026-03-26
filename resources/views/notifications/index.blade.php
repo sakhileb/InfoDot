@@ -5,7 +5,7 @@
         <div class="w-3/12">
         	side nav
         </div>
-        <div class="w-7/12 border border-gray-800 border-t-0 border-b-0">
+        <div class="w-7/12 border border-[#434656]/20 border-t-0 border-b-0">
         	<app-notifications />
         </div>
     </div>

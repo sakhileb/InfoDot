@@ -1,42 +1,74 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+        <div class="w-full">
             <h2 class="text-xl font-semibold leading-tight text-slate-100">
                 {{ __('Solutions') }}
             </h2>
-            <a href="{{ route('add') }}" class="inline-flex items-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold leading-5 text-white shadow-sm transition hover:bg-blue-500">
-                <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add Solution
-            </a>
         </div>
     </x-slot>
 
-    <x-dashboard-shell>
-        <div class="space-y-5">
-            @forelse ($solutions as $solution)
-                <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" class="block rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-sm ring-1 ring-slate-800/70 transition hover:-translate-y-0.5 hover:border-blue-300 hover:bg-slate-900/60 hover:shadow-md">
-                    <div class="flex items-start justify-between gap-4">
-                        <h3 class="text-lg font-semibold leading-7 text-white">{{ $solution->solution_title }}</h3>
-                        <span class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
-                            {{ $solution->duration }} {{ $solution->duration_type }}
-                        </span>
-                    </div>
+    <div class="min-h-screen bg-[#0b1326] text-[#dae2fd]">
+        <style>
+            .solutions-shell {
+                background-color: #0b1326;
+                color: #dae2fd;
+                font-family: 'Inter', sans-serif;
+            }
+            .solutions-shell .font-headline {
+                font-family: 'Manrope', sans-serif;
+            }
+            .solutions-glass {
+                background: rgba(49, 57, 77, 0.6);
+                backdrop-filter: blur(20px);
+            }
+        </style>
 
-                    <p class="mt-3 text-sm leading-7 text-slate-300">
-                        {{ \Illuminate\Support\Str::limit($solution->solution_description, 180) }}
-                    </p>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-                    <div class="mt-5 flex items-center gap-6 text-sm text-slate-400">
-                        <span><i class="fa fa-heart mr-1" aria-hidden="true"></i>{{ $solution->likes_count }} likes</span>
-                        <span><i class="fa fa-comment mr-1" aria-hidden="true"></i>{{ $solution->comments_count }} comments</span>
+        <main class="solutions-shell px-4 pb-12 pt-8 sm:px-6 lg:px-10">
+            <div class="mx-auto w-full max-w-7xl">
+                <div class="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <h2 class="font-headline text-4xl font-extrabold tracking-tight text-[#dae2fd]">Solutions</h2>
+                        <p class="mt-2 font-medium tracking-tight text-[#b7c8e1] opacity-80">Architecting your business logic with precision components.</p>
                     </div>
-                </a>
-            @empty
-                <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-900/60 p-12 text-center text-slate-400">
-                    No solutions yet. Add your first business solution.
+                    <a href="{{ route('add') }}" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#2962ff] to-[#004ee8] px-7 py-3 font-headline text-sm font-bold tracking-tight text-[#f7f5ff] shadow-[0_8px_24px_rgba(41,98,255,0.25)] transition hover:shadow-[0_12px_32px_rgba(41,98,255,0.4)]">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add Solution
+                    </a>
                 </div>
-            @endforelse
-        </div>
-    </x-dashboard-shell>
+
+                @forelse ($solutions as $solution)
+                    <a href="{{ route('solutions.view', ['id' => $solution->id]) }}" class="solutions-glass mb-6 block rounded-3xl border border-[#434656]/40 p-6 shadow-[0_20px_44px_rgba(0,0,0,0.32)] transition hover:-translate-y-0.5 hover:border-[#8d90a2]/60">
+                        <div class="flex items-start justify-between gap-4">
+                            <h3 class="font-headline text-xl font-bold tracking-tight text-[#dae2fd]">{{ $solution->solution_title }}</h3>
+                            <span class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
+                                {{ $solution->duration }} {{ $solution->duration_type }}
+                            </span>
+                        </div>
+
+                        <p class="mt-4 text-sm leading-7 text-[#c3c5d8]">
+                            {{ \Illuminate\Support\Str::limit($solution->solution_description, 180) }}
+                        </p>
+
+                        <div class="mt-5 flex flex-wrap items-center gap-6 text-sm text-[#b7c8e1] opacity-90">
+                            <span><i class="fa fa-heart mr-1" aria-hidden="true"></i>{{ $solution->likes_count }} likes</span>
+                            <span><i class="fa fa-comment mr-1" aria-hidden="true"></i>{{ $solution->comments_count }} comments</span>
+                        </div>
+                    </a>
+                @empty
+                    <section class="relative flex min-h-[500px] flex-col items-center justify-center">
+                        <div class="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#b6c4ff]/10 blur-[120px]"></div>
+                        <div class="solutions-glass relative w-full max-w-2xl rounded-[2rem] border border-[#434656]/30 p-12 text-center shadow-[0_32px_64px_rgba(0,0,0,0.4)]">
+                            <h3 class="font-headline text-2xl font-bold tracking-tight text-[#dae2fd]">No solutions yet.</h3>
+                            <p class="mx-auto mt-4 max-w-sm text-[#b7c8e1]">Add your first business solution to begin optimizing your workspace workflows and automation sequences.</p>
+                            <a href="{{ route('add') }}" class="mt-8 inline-flex items-center rounded-full bg-[#2962ff] px-8 py-3 text-sm font-semibold tracking-wide text-[#f7f5ff] transition hover:bg-[#004ee8]">Create from Scratch</a>
+                        </div>
+                    </section>
+                @endforelse
+            </div>
+        </main>
+    </div>
 
     @include('layouts.footer')
 </x-app-layout>

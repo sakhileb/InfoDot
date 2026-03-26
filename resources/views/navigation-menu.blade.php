@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 text-slate-200 backdrop-blur">
+<nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-[#434656]/25 bg-[#0b1326]/90 text-[#dae2fd] backdrop-blur-xl" style="font-family:'Inter',sans-serif;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 justify-between">
@@ -12,10 +12,10 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden items-center space-x-2 sm:ml-8 sm:flex">
-                    <a href="{{ route('questions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-blue-600 text-white shadow-[0_10px_20px_-12px_rgba(37,99,235,0.9)]' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
+                    <a href="{{ route('questions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-[#2962ff] text-[#f7f5ff] shadow-[0_8px_20px_rgba(41,98,255,0.35)]' : 'text-[#b7c8e1] hover:bg-[#1a2438] hover:text-[#b6c4ff]' }}">
                         {{ __('Questions') }}
                     </a>
-                    <a href="{{ route('solutions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-blue-600 text-white shadow-[0_10px_20px_-12px_rgba(37,99,235,0.9)]' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
+                    <a href="{{ route('solutions') }}" class="rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-[#2962ff] text-[#f7f5ff] shadow-[0_8px_20px_rgba(41,98,255,0.35)]' : 'text-[#b7c8e1] hover:bg-[#1a2438] hover:text-[#b6c4ff]' }}">
                         {{ __('Business Solutions') }}
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center rounded-md border border-slate-700 bg-slate-900 px-3 py-2.5 text-sm font-medium leading-5 text-slate-200 shadow-sm transition hover:border-blue-500/50 hover:bg-slate-800 hover:text-blue-300 focus:outline-none focus:border-blue-500/50 focus:bg-slate-800 active:bg-slate-800">
+                                    <button type="button" class="inline-flex items-center rounded-md border border-[#434656]/50 bg-[#131b2e] px-3 py-2.5 text-sm font-medium leading-5 text-[#dae2fd] shadow-sm transition hover:border-[#2962ff]/50 hover:bg-[#1a2438] hover:text-[#b6c4ff] focus:outline-none focus:border-[#2962ff]/50 focus:bg-[#1a2438] active:bg-[#1a2438]">
                                         {{ __('Manage Team')}}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -44,7 +44,7 @@
                             <x-slot name="content">
                                 <div class="w-60">
                                     <!-- Team Management -->
-                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
+                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-[#8d90a2] uppercase">
                                         {{ __('Manage Team') }}
                                     </div>
 
@@ -59,10 +59,10 @@
                                         </x-jet-dropdown-link>
                                     @endcan
 
-                                    <div class="border-t border-slate-700"></div>
+                                    <div class="border-t border-[#434656]/40"></div>
 
                                     <!-- Team Switcher -->
-                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
+                                    <div class="block px-4 py-2.5 text-xs tracking-wide text-[#8d90a2] uppercase">
                                         {{ __('Switch Teams') }}
                                     </div>
 
@@ -94,8 +94,7 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
-                                {{ __('Manage Account') }}
+                                <div class="block px-4 py-2.5 text-xs tracking-wide text-[#8d90a2] uppercase">
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show', ['id' => Auth::id()]) }}">
@@ -108,7 +107,7 @@
                                 </x-jet-dropdown-link>
                             @endif
 
-                            <div class="border-t border-slate-700"></div>
+                            <div class="border-t border-[#434656]/40"></div>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -127,7 +126,7 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition hover:bg-slate-800 hover:text-blue-300 focus:outline-none focus:bg-slate-800 focus:text-blue-300">
+                <button @click="open = ! open" class="inline-flex items-center justify-center rounded-md p-2 text-[#8d90a2] transition hover:bg-[#1a2438] hover:text-[#b6c4ff] focus:outline-none focus:bg-[#1a2438] focus:text-[#b6c4ff]">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -139,17 +138,17 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="space-y-2 bg-slate-950 px-4 pt-3 pb-4">
-            <a href="{{ route('questions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
+        <div class="space-y-2 bg-[#0b1326] px-4 pt-3 pb-4">
+            <a href="{{ route('questions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('questions') || request()->routeIs('questions.view') || request()->routeIs('seek') ? 'bg-[#2962ff] text-[#f7f5ff]' : 'text-[#b7c8e1] hover:bg-[#1a2438] hover:text-[#b6c4ff]' }}">
                 {{ __('Questions') }}
             </a>
-            <a href="{{ route('solutions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-blue-300' }}">
+            <a href="{{ route('solutions') }}" class="block rounded-xl px-4 py-2.5 text-sm font-semibold leading-5 transition {{ request()->routeIs('solutions') || request()->routeIs('solutions.view') || request()->routeIs('add') ? 'bg-[#2962ff] text-[#f7f5ff]' : 'text-[#b7c8e1] hover:bg-[#1a2438] hover:text-[#b6c4ff]' }}">
                 {{ __('Business Solutions') }}
             </a>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="border-t border-slate-800 bg-slate-950 pt-4 pb-1">
+        <div class="border-t border-[#434656]/25 bg-[#0b1326] pt-4 pb-1">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
@@ -162,8 +161,8 @@
                 @endif
 
                 <div>
-                    <div class="text-base font-medium text-slate-100">{{ Auth::user()->name }}</div>
-                    <div class="text-sm font-medium text-slate-400">{{ Auth::user()->email }}</div>
+                    <div class="text-base font-medium text-[#dae2fd]">{{ Auth::user()->name }}</div>
+                    <div class="text-sm font-medium text-[#8d90a2]">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
@@ -192,9 +191,9 @@
 
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="border-t border-slate-700"></div>
+                    <div class="border-t border-[#434656]/40"></div>
 
-                    <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
+                    <div class="block px-4 py-2.5 text-xs tracking-wide text-[#8d90a2] uppercase">
                         {{ __('Manage Team') }}
                     </div>
 
@@ -209,7 +208,7 @@
                         </x-jet-responsive-nav-link>
                     @endcan
 
-                    <div class="border-t border-slate-700"></div>
+                    <div class="border-t border-[#434656]/40"></div>
 
                     <!-- Team Switcher -->
                     <div class="block px-4 py-2.5 text-xs tracking-wide text-slate-400">
