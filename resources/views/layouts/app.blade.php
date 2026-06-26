@@ -167,7 +167,7 @@
 
     @stack('modals')
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://kit.fontawesome.com/8690917e6c.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@yaireo/tagify"></script>
     <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>

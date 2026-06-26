@@ -2,31 +2,26 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Like;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Questions extends Model
 {
-    use Search;
     use HasFactory;
+    use Searchable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'user_id', 'question', 'description', 'status'
+        'user_id', 'question', 'description', 'status',
     ];
 
-    protected $searchable = [
-        'question',
-        'description'
-    ];
-
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    public function toSearchableArray(): array
+    {
+        return [
+            'question'    => $this->question,
+            'description' => $this->description,
+        ];
+    }
 
     public function comments()
     {
@@ -42,5 +37,4 @@ class Questions extends Model
     {
         return $this->morphMany(Like::class, 'likable');
     }
-
 }

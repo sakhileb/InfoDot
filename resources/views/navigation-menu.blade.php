@@ -12,6 +12,8 @@
             </div>
 
             <div class="flex items-center gap-2 lg:gap-4">
+                <livewire:dot-switcher />
+
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="relative hidden sm:block">
                         <x-jet-dropdown align="right" width="60">

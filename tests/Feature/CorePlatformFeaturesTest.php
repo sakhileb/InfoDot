@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\Associates;
-use App\Http\Livewire\Comments;
-use App\Http\Livewire\Question as QuestionComponent;
+use App\Livewire\Associates;
+use App\Livewire\Comments;
+use App\Livewire\Question as QuestionComponent;
 use App\Models\Like;
 use App\Models\Questions;
 use App\Models\Solutions;
@@ -71,7 +71,7 @@ class CorePlatformFeaturesTest extends TestCase
             'solution_body' => ['Create an account on the portal.', 'Provide required legal information and submit.'],
         ]);
 
-        $response->assertOk();
+        $response->assertRedirect(route('solutions'));
 
         $solution = Solutions::where('solution_title', 'How to register a business online')->first();
 

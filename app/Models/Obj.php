@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Obj;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use App\Models\Traits\RelatesToTeams;
@@ -10,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
+/**
+ * @property \Illuminate\Database\Eloquent\Model|null $objectable
+ */
 class Obj extends Model
 {
     use HasFactory, RelatesToTeams, HasRecursiveRelationships, Searchable;

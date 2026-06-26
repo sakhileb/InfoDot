@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Like;
-use App\Models\Questions;
-use App\Models\Solutions;
-use App\Models\Associates;
+use Laravel\Cashier\Billable;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Scout\Searchable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -17,49 +15,38 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Billable;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
     use Notifiable;
+    use Searchable;
     use TwoFactorAuthenticatable;
-    use Search;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    protected $searchable = [
-        'name',
-        'email',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function avatar()
+    public function toSearchableArray(): array
     {
-       return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?d=mp';
+        return [
+            'name'  => $this->name,
+            'email' => $this->email,
+        ];
+    }
+
+    public function avatar(): string
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?d=mp';
     }
 
     public function likes()

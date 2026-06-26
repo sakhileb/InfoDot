@@ -12,11 +12,14 @@ class UserResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
+        /** @var \App\Models\User $user */
+        $user = $this->resource;
+
         return [
-            'name' => $this->name,
-            'avatar' => $this->avatar()
+            'name'   => $user->name,
+            'avatar' => $user->avatar(),
         ];
     }
 }
