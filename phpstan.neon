@@ -14,7 +14,7 @@ parameters:
         - identifier: property.phpDocType
         # Obj::$objectable is a morphTo() result; name is dynamic on the related model
         - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$(name|id)#'
-        # Sanctum 4 PersonalAccessToken has $expires_at as a cast column; not yet in Larastan stubs
-        - '#Access to an undefined property Laravel\\Sanctum\\PersonalAccessToken::\$expires_at#'
+        # Notification::toArray() is defined on concrete classes, not the abstract base — same pattern as Laravel's own DatabaseChannel
+        - '#Call to an undefined method Illuminate\\Notifications\\Notification::toArray\(\)#'
     excludePaths:
         - app/Http/Requests/Media/MediaStoreRequest.php
