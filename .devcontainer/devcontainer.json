@@ -1,0 +1,86 @@
+{
+  "name": "InfoDot — Laravel 12 Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/php:8.4-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/postgresql:1": {
+      "version": "16"
+    },
+    "ghcr.io/devcontainers/features/redis:1": {
+      "version": "7"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "forwardPorts": [8000, 5432, 6379, 8080, 5173],
+
+  "portsAttributes": {
+    "8000": { "label": "Laravel (php artisan serve)", "onAutoForward": "notify" },
+    "5173": { "label": "Vite dev server", "onAutoForward": "notify" },
+    "8080": { "label": "Laravel Reverb (WebSockets)", "onAutoForward": "silent" },
+    "5432": { "label": "PostgreSQL", "onAutoForward": "silent" },
+    "6379": { "label": "Redis", "onAutoForward": "silent" }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "onecentlin.laravel-blade",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "ryannaddy.laravel-artisan",
+        "MehediDracula.php-namespace-resolver",
+        "mikestead.dotenv",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "intelephense.environment.phpVersion": "8.4.0",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[php]": {
+          "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        },
+        "tailwindCSS.includeLanguages": {
+          "blade": "html"
+        },
+        "files.associations": {
+          "*.blade.php": "blade"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "APP_ENV": "local",
+    "APP_DEBUG": "true",
+    "DB_CONNECTION": "pgsql",
+    "DB_HOST": "localhost",
+    "DB_PORT": "5432",
+    "DB_DATABASE": "infodot",
+    "DB_USERNAME": "postgres",
+    "DB_PASSWORD": "postgres",
+    "CACHE_STORE": "redis",
+    "SESSION_DRIVER": "redis",
+    "QUEUE_CONNECTION": "database",
+    "REDIS_HOST": "localhost",
+    "REDIS_PORT": "6379",
+    "BROADCAST_CONNECTION": "reverb"
+  },
+
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/pgdata,target=/var/lib/postgresql/data,type=bind,consistency=delegated"
+  ]
+}
