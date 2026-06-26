@@ -9,6 +9,7 @@ use Livewire\Component;
 class DotSwitcher extends Component
 {
     public bool $open = false;
+    public bool $inline = false;
 
     #[Computed]
     public function platforms(): array

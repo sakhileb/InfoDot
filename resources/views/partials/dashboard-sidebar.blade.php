@@ -22,23 +22,7 @@
 
     <div class="my-6 border-t border-[#434656]/30"></div>
 
-    <div x-data="{ subServicesOpen: true }">
-        <button
-            type="button"
-            class="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-semibold leading-5 text-[#b7c8e1] transition hover:bg-[#1a2438] hover:text-[#b6c4ff]"
-            @click="subServicesOpen = !subServicesOpen"
-        >
-            <span>Sub Services</span>
-            <span class="text-xs text-[#8d90a2]" x-text="subServicesOpen ? 'Hide' : 'Show'"></span>
-        </button>
-
-        <div class="mt-2 space-y-1.5" x-show="subServicesOpen" x-cloak>
-            <a href="{{ route('subservices.files') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.files') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Files</a>
-            <a href="{{ route('subservices.docs') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.docs') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Docs</a>
-            <a href="{{ route('subservices.sheets') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.sheets') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Sheets</a>
-            <a href="{{ route('subservices.press') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.press') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Press</a>
-            <a href="{{ route('subservices.forms') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.forms') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Forms</a>
-            <a href="{{ route('subservices.engage') }}" class="block rounded-xl px-4 py-2.5 text-sm leading-5 transition {{ request()->routeIs('subservices.engage') ? 'bg-[#2962ff]/10 text-[#b6c4ff] border-l-4 border-[#2962ff]' : 'text-[#b7c8e1] opacity-70 hover:bg-[#1a2438] hover:opacity-100 hover:text-[#b6c4ff]' }}">Dot.Engage</a>
-        </div>
+    <div class="px-1">
+        <livewire:dot-switcher :inline="true" />
     </div>
 </aside>
