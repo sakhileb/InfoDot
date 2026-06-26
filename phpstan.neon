@@ -5,6 +5,9 @@ parameters:
     paths:
         - app/
     level: 5
+    phpVersion: 80400
+    bootstrapFiles:
+        - phpstan-bootstrap.php
     ignoreErrors:
         # Eloquent resources access model attributes via magic __get
         - '#Access to an undefined property App\\Http\\Resources\\.*#'
