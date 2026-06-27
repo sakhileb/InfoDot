@@ -91,12 +91,6 @@ class PagesController extends Controller
 
     }
 
-    /**
-     * Show the user profile screen.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
-     */
     public function show($id)
     {
         $get_profile = User::where('id', $id)->first();

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 
 class Comment extends Component
 {
-    public $comment;
+    public mixed $comment;
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.comment');
     }

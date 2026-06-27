@@ -5,27 +5,28 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "algolia/algoliasearch-client-php": "^4.39",
-        "beyondcode/laravel-websockets": "^1.14",
+        "php": "^8.4",
         "guzzlehttp/guzzle": "^7.10",
-        "laravel/framework": "^10.50.2",
-        "laravel/jetstream": "^3.3",
-        "laravel/sanctum": "^3.3",
+        "laravel/cashier": "^16.6",
+        "laravel/framework": "^12.0",
+        "laravel/jetstream": "^5.0",
+        "laravel/reverb": "^1.0",
+        "laravel/sanctum": "^4.0",
         "laravel/scout": "^10.25",
         "laravel/tinker": "^2.11",
-        "livewire/livewire": "^2.12",
-        "pusher/pusher-php-server": "^7.2",
+        "livewire/livewire": "^3.0",
+        "sentry/sentry-laravel": "^4.26",
         "staudenmeir/laravel-adjacency-list": "^1.13.11",
-        "teamtnt/laravel-scout-tntsearch-driver": "^12.5"
+        "teamtnt/laravel-scout-tntsearch-driver": "^15.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
+        "larastan/larastan": "^3.10",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^7.12",
-        "phpunit/phpunit": "^10.5"
-        ,"spatie/laravel-ignition": "^2.4.2"
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4.2"
     },
     "autoload": {
         "psr-4": {
@@ -45,8 +46,7 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -68,10 +68,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "audit": {
-            "block-insecure": false,
-            "ignore": [
-                "PKSA-8qx3-n5y5-vvnd"
-            ]
+            "block-insecure": false
         }
     },
     "minimum-stability": "stable",

@@ -1,39 +1,34 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Question extends Component
 {
-    public $model;
+    public mixed $model;
+    public mixed $question = null;
 
-    public $question;
-
-    public function storeLike()
+    public function storeLike(): void
     {
         $like = $this->model->likes()->where('user_id', Auth::id())->first();
 
-        if($like)
-        {
+        if ($like) {
             $like->delete();
-        }
-        else
-        {
+        } else {
             $like = $this->model->likes()->make();
             $like->user()->associate(auth()->user());
             $like->save();
         }
     }
 
-    public function markedAsSolved()
+    public function markedAsSolved(): void
     {
-        $solved = $this->model->update(['status' => 1]);
-
+        $this->model->update(['status' => 1]);
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.question');
     }

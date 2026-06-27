@@ -2,33 +2,27 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Steps;
-use App\Models\Like;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Solutions extends Model
 {
-    use Search;
     use HasFactory;
+    use Searchable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'user_id', 'solution_title', 'solution_description', 'tags', 'duration', 'duration_type', 'steps'
+        'user_id', 'solution_title', 'solution_description', 'tags', 'duration', 'duration_type', 'steps',
     ];
 
-    protected $searchable = [
-        'solution_title',
-        'solution_description',
-        'tags',
-    ];
-
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    public function toSearchableArray(): array
+    {
+        return [
+            'solution_title'       => $this->solution_title,
+            'solution_description' => $this->solution_description,
+            'tags'                 => $this->tags,
+        ];
+    }
 
     public function user()
     {

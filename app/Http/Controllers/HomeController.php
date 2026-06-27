@@ -16,12 +16,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index(Request $request)
+    public function index(): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('solutions');
     }

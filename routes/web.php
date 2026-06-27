@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\EcosystemAuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Solutions\SolutionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,8 @@ use App\Http\Controllers\Solutions\SolutionsController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/ecosystem', [EcosystemAuthController::class, 'handle'])->name('auth.ecosystem');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 

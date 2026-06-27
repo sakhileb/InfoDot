@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true" cacheDirectory=".phpunit.cache">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache">
   <testsuites>
     <testsuite name="Unit">
       <directory suffix="Test.php">./tests/Unit</directory>
@@ -19,7 +22,11 @@
     <server name="MAIL_FROM_NAME" value="InfoDot Test"/>
     <server name="QUEUE_CONNECTION" value="sync"/>
     <server name="SESSION_DRIVER" value="array"/>
-    <server name="TELESCOPE_ENABLED" value="false"/>
+    <server name="SCOUT_DRIVER" value="null"/>
+    <server name="BROADCAST_CONNECTION" value="reverb"/>
+    <server name="REVERB_APP_KEY" value="test-key"/>
+    <server name="REVERB_APP_SECRET" value="test-secret"/>
+    <server name="REVERB_APP_ID" value="test-app"/>
   </php>
   <source>
     <include>

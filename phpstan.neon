@@ -1,0 +1,23 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+    level: 5
+    phpVersion: 80400
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+    ignoreErrors:
+        # Eloquent resources access model attributes via magic __get
+        - '#Access to an undefined property App\\Http\\Resources\\.*#'
+        # Livewire #[Computed] properties are accessed as if public properties
+        - '#Access to an undefined property App\\Livewire\\Search::\$(questions|solutions)#'
+        # PHPDoc covariance on Eloquent base class overrides — non-actionable vendor stubs
+        - identifier: property.phpDocType
+        # Obj::$objectable is a morphTo() result; name is dynamic on the related model
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$(name|id)#'
+        # Notification::toArray() is defined on concrete classes, not the abstract base — same pattern as Laravel's own DatabaseChannel
+        - '#Call to an undefined method Illuminate\\Notifications\\Notification::toArray\(\)#'
+    excludePaths:
+        - app/Http/Requests/Media/MediaStoreRequest.php
