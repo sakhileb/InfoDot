@@ -9,6 +9,12 @@
 
     <main class="px-4 pb-12 pt-8 sm:px-6 lg:px-10" style="font-family:'Inter',sans-serif;">
         <div class="mx-auto w-full max-w-7xl">
+
+            {{-- Ecosystem widget --}}
+            <div class="mb-10 rounded-3xl border border-[#434656]/30 p-6 shadow-[0_20px_44px_rgba(0,0,0,0.32)] sm:p-8" style="background:rgba(19,27,46,0.85);backdrop-filter:blur(20px);">
+                <livewire:ecosystem-widget />
+            </div>
+
             <div class="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                     <h2 class="text-4xl font-extrabold tracking-tight text-[#dae2fd]" style="font-family:'Manrope',sans-serif;">Solutions</h2>
