@@ -150,6 +150,19 @@ class CoverageGapTest extends TestCase
             ->assertSet('highlightIndex', 0);
     }
 
+    // AnalyticsController
+
+    public function test_analytics_dashboard_renders_for_authenticated_user(): void
+    {
+        $user = $this->authUser();
+        $this->actingAs($user)->get('/analytics')->assertOk();
+    }
+
+    public function test_analytics_dashboard_redirects_guest(): void
+    {
+        $this->get('/analytics')->assertRedirect('/login');
+    }
+
     // DotSwitcher
 
     public function test_dot_switcher_issues_token_and_redirects(): void
@@ -169,7 +182,9 @@ class CoverageGapTest extends TestCase
         // Should not throw or redirect — unknown key is a no-op
         Livewire::actingAs($user)
             ->test(DotSwitcher::class)
-            ->call('switchTo', 'nonexistent');
+            ->call('switchTo', 'nonexistent')
+            ->assertNoRedirect()
+            ->assertHasNoErrors();
     }
 
     // Comments — storeLike and markedAsSolved

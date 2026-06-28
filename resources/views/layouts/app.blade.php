@@ -96,6 +96,11 @@
                 <span>Solutions</span>
             </a>
 
+            <a href="{{ route('analytics.dashboard') }}" class="sidebar-link {{ request()->routeIs('analytics.*') ? 'active' : '' }}">
+                <span class="material-symbols-outlined" style="font-size:21px;">insights</span>
+                <span>Analytics</span>
+            </a>
+
             {{-- Sub Services --}}
             <div x-data="{ open: {{ request()->routeIs('subservices.*') ? 'true' : 'false' }} }">
                 <button @click="open = !open" class="sidebar-link {{ request()->routeIs('subservices.*') ? 'active' : '' }}" style="width:100%;border:none;cursor:pointer;background:none;">

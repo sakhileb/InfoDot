@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Analytics\AnalyticsController;
 use App\Http\Controllers\Auth\EcosystemAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::get('/auth/ecosystem', [EcosystemAuthController::class, 'handle'])->name(
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Dashboard Pages
+
+    // -------------------------------------------------------
+    // Analytics Controller
+    // -------------------------------------------------------
+    Route::get('/analytics', [AnalyticsController::class, 'dashboard'])->name('analytics.dashboard');
 
     // // -------------------------------------------------------
     // Solutions Controller
