@@ -3,195 +3,147 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1326" />
-    <link rel="shortcut icon" href="{{ asset('img/icons/icon.png') }}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/icons/icon.png') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>InfoDot</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
-    <!-- Tailwind v3 Play CDN — supports all arbitrary values like bg-[#hex] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            corePlugins: { preflight: false },
-            theme: {
-                extend: {
-                    fontFamily: {
-                        headline: ['Manrope', 'sans-serif'],
-                        body:     ['Inter',   'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    <script>tailwind.config = { corePlugins: { preflight: false } }</script>
     <style>
+        :root { --accent: #6366f1; --accent-rgb: 99,102,241; }
         *, *::before, *::after { box-sizing: border-box; }
-        body { margin: 0; background: #0b1326; color: #dae2fd; font-family: 'Inter', sans-serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; line-height: 1; }
-        [x-cloak] { display: none !important; }
-        .glass-card { background: rgba(49,57,77,0.6); backdrop-filter: blur(20px); border: 1px solid rgba(67,70,86,0.35); border-radius: 1rem; }
-        .sidebar-link { display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border-radius:0.5rem;font-family:'Manrope',sans-serif;font-size:0.875rem;font-weight:600;text-decoration:none;color:#b7c8e1;opacity:0.75;transition:all 0.2s; }
-        .sidebar-link:hover { background:rgba(26,36,56,0.9);opacity:1;color:#b6c4ff; }
-        .sidebar-link.active { border-left:4px solid #2962ff;background:rgba(41,98,255,0.1);color:#b6c4ff;opacity:1; }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    </style>
+        body { margin:0; background:#09090b; color:#f4f4f5; font-family:'Inter',system-ui,sans-serif; font-size:14px; line-height:1.5; }
+        .material-symbols-rounded { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; line-height:1; user-select:none; }
+        [x-cloak] { display:none!important; }
 
+        /* Sidebar */
+        .sidebar { position:fixed; left:0; top:0; width:260px; height:100vh; background:#0d0d10; border-right:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; z-index:40; overflow:hidden; }
+        .sidebar::before { content:''; position:absolute; top:-80px; left:-80px; width:320px; height:320px; background:radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 65%); pointer-events:none; }
+
+        .sidebar-brand { padding:20px 18px 14px; display:flex; align-items:center; gap:11px; flex-shrink:0; }
+        .brand-icon { width:36px; height:36px; border-radius:10px; background:rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.22); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .brand-icon .material-symbols-rounded { font-size:18px; color:#6366f1; }
+        .brand-name { font-family:'Syne',sans-serif; font-size:14.5px; font-weight:700; color:#f4f4f5; letter-spacing:-0.01em; line-height:1.2; }
+        .brand-status { display:flex; align-items:center; gap:5px; margin-top:3px; }
+        .live-dot { width:6px; height:6px; border-radius:50%; background:#6366f1; flex-shrink:0; animation:live-pulse 2.8s ease-in-out infinite; }
+        @keyframes live-pulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(99,102,241,0.45); } 60% { opacity:.6; box-shadow:0 0 0 5px rgba(99,102,241,0); } }
+        .brand-subtitle { font-size:10px; font-weight:500; color:#3f3f46; text-transform:uppercase; letter-spacing:0.09em; }
+
+        .sidebar-divider { height:1px; background:rgba(255,255,255,0.06); margin:4px 14px 8px; }
+        .sidebar-nav { padding:0 10px; flex:1; overflow-y:auto; scrollbar-width:none; }
+        .sidebar-nav::-webkit-scrollbar { display:none; }
+        .nav-section-label { font-size:10px; font-weight:600; color:#3f3f46; text-transform:uppercase; letter-spacing:0.1em; padding:14px 8px 5px; }
+        .nav-item { display:flex; align-items:center; gap:9px; padding:7.5px 10px; border-radius:8px; font-size:13px; font-weight:500; color:#71717a; text-decoration:none; transition:background .13s,color .13s,transform .13s; margin-bottom:1px; }
+        .nav-item:hover { background:rgba(255,255,255,0.05); color:#d4d4d8; transform:translateX(1px); }
+        .nav-item.active { background:rgba(99,102,241,0.1); color:#6366f1; font-weight:600; }
+        .nav-icon { font-size:17px; width:20px; text-align:center; flex-shrink:0; }
+
+        .sidebar-footer { padding:10px 14px 14px; border-top:1px solid rgba(255,255,255,0.06); flex-shrink:0; }
+        .user-row { display:flex; align-items:center; gap:9px; padding:8px 6px; border-radius:8px; }
+        .user-avatar { width:28px; height:28px; border-radius:50%; background:rgba(99,102,241,0.18); border:1px solid rgba(99,102,241,0.28); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#6366f1; flex-shrink:0; font-family:'Syne',sans-serif; }
+        .user-name { font-size:12px; font-weight:600; color:#d4d4d8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .user-team { font-size:10px; color:#52525b; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+        /* Topbar */
+        .topbar { position:fixed; top:0; left:260px; right:0; height:54px; background:rgba(9,9,11,0.85); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; padding:0 22px; z-index:30; gap:12px; }
+        .topbar-title { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:#f4f4f5; flex:1; }
+        .topbar-team { font-size:11px; color:#52525b; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); border-radius:6px; padding:3px 8px; font-weight:500; white-space:nowrap; }
+        .topbar-btn { width:30px; height:30px; border-radius:7px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; color:#71717a; cursor:pointer; transition:background .13s,color .13s; text-decoration:none; flex-shrink:0; }
+        .topbar-btn:hover { background:rgba(255,255,255,0.09); color:#d4d4d8; }
+        .topbar-btn .material-symbols-rounded { font-size:17px; }
+
+        /* Content */
+        .content-wrap { margin-left:260px; padding-top:54px; min-height:100vh; }
+
+        /* Shared UI tokens */
+        .dot-card { background:#141416; border:1px solid rgba(255,255,255,0.07); border-radius:12px; }
+        .dot-card:hover { border-color:rgba(255,255,255,0.11); }
+        .metric-val { font-family:'JetBrains Mono',monospace; font-weight:500; letter-spacing:-0.02em; }
+        .dot-input { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:#f4f4f5; font-family:'Inter',sans-serif; font-size:13px; padding:8px 12px; width:100%; transition:border-color .15s,box-shadow .15s; outline:none; }
+        .dot-input:focus { border-color:rgba(99,102,241,0.45); box-shadow:0 0 0 3px rgba(99,102,241,0.07); }
+        .dot-input::placeholder { color:#3f3f46; }
+        .dot-btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; transition:all .14s; border:none; text-decoration:none; font-family:'Inter',sans-serif; }
+        .dot-btn-primary { background:#6366f1; color:#09090b; }
+        .dot-btn-primary:hover { filter:brightness(1.1); }
+        .dot-btn-ghost { background:rgba(255,255,255,0.06); color:#a1a1aa; border:1px solid rgba(255,255,255,0.08); }
+        .dot-btn-ghost:hover { background:rgba(255,255,255,0.1); color:#f4f4f5; }
+        .dot-badge { display:inline-flex; align-items:center; padding:2px 8px; border-radius:100px; font-size:11px; font-weight:600; }
+        .dot-badge-accent { background:rgba(99,102,241,0.12); color:#6366f1; }
+        select.dot-input option { background:#1a1a1f; }
+    </style>
     @livewireStyles
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
-
-    @if(auth()->user())
-        <script>
-            window.User = {
-                id: {{ optional(auth()->user())->id }},
-                avatar: '{{ optional(auth()->user())->avatar() }}'
-            }
-        </script>
-    @endif
 </head>
 <body>
-    <x-jet-banner />
+    <x-banner />
 
-    {{-- ═══════════════════════════════════════════
-         FIXED LEFT SIDEBAR
-    ═══════════════════════════════════════════ --}}
-    <aside style="position:fixed;left:0;top:0;height:100vh;width:288px;display:flex;flex-direction:column;background:#131b2e;border-right:1px solid rgba(67,70,86,0.2);box-shadow:8px 0 32px rgba(6,14,32,0.5);z-index:50;overflow-y:auto;padding:2rem 1rem;">
-
-        {{-- Brand --}}
-        <div style="margin-bottom:2rem;padding:0 0.75rem;">
-            <a href="{{ route('solutions') }}" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
-                <img src="{{ asset('img/icons/icon.png') }}" style="height:32px;width:32px;border-radius:6px;" />
-                <div>
-                    <div style="font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;color:#b6c4ff;letter-spacing:-0.02em;">InfoDot</div>
-                    <div style="font-size:0.6rem;font-weight:600;color:#b7c8e1;opacity:0.55;letter-spacing:0.18em;text-transform:uppercase;margin-top:2px;">Premium Console</div>
-                </div>
-            </a>
-        </div>
-
-        {{-- New Request CTA --}}
-        <div style="margin:0 0.5rem 2rem;">
-            <a href="{{ route('seek') }}" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;border-radius:9999px;background:linear-gradient(135deg,#2962ff,#004ee8);padding:0.75rem 1.25rem;font-family:'Manrope',sans-serif;font-size:0.8rem;font-weight:700;color:#f7f5ff;text-decoration:none;box-shadow:0 8px 20px rgba(41,98,255,0.3);transition:box-shadow 0.25s,transform 0.15s;" onmouseover="this.style.boxShadow='0 12px 28px rgba(41,98,255,0.45)'" onmouseout="this.style.boxShadow='0 8px 20px rgba(41,98,255,0.3)'">
-                <span class="material-symbols-outlined" style="font-size:19px;">add_circle</span>
-                New Request
-            </a>
-        </div>
-
-        {{-- Navigation --}}
-        <nav style="flex:1;display:flex;flex-direction:column;gap:0.2rem;">
-
-            <a href="{{ route('questions') }}" class="sidebar-link {{ request()->routeIs('questions', 'questions.view', 'seek') ? 'active' : '' }}">
-                <span class="material-symbols-outlined" style="font-size:21px;">help_outline</span>
-                <span>Questions</span>
-            </a>
-
-            <a href="{{ route('solutions') }}" class="sidebar-link {{ request()->routeIs('solutions', 'solutions.view', 'add') ? 'active' : '' }}">
-                <span class="material-symbols-outlined" style="font-size:21px;">lightbulb</span>
-                <span>Solutions</span>
-            </a>
-
-            <a href="{{ route('analytics.dashboard') }}" class="sidebar-link {{ request()->routeIs('analytics.*') ? 'active' : '' }}">
-                <span class="material-symbols-outlined" style="font-size:21px;">insights</span>
-                <span>Analytics</span>
-            </a>
-
-            {{-- Sub Services --}}
-            <div x-data="{ open: {{ request()->routeIs('subservices.*') ? 'true' : 'false' }} }">
-                <button @click="open = !open" class="sidebar-link {{ request()->routeIs('subservices.*') ? 'active' : '' }}" style="width:100%;border:none;cursor:pointer;background:none;">
-                    <span class="material-symbols-outlined" style="font-size:21px;">layers</span>
-                    <span style="flex:1;text-align:left;">Sub Services</span>
-                    <span class="material-symbols-outlined" style="font-size:16px;transition:transform 0.2s;" :style="open ? 'transform:rotate(180deg)' : ''">expand_more</span>
-                </button>
-                <div x-show="open" x-cloak style="margin-left:2.25rem;display:flex;flex-direction:column;gap:0.15rem;margin-top:0.2rem;">
-                    <a href="{{ route('subservices.files') }}"   style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.files')   ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Files</a>
-                    <a href="{{ route('subservices.docs') }}"    style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.docs')    ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Docs</a>
-                    <a href="{{ route('subservices.sheets') }}"  style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.sheets')  ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Sheets</a>
-                    <a href="{{ route('subservices.press') }}"   style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.press')   ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Press</a>
-                    <a href="{{ route('subservices.forms') }}"   style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.forms')   ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Forms</a>
-                    <a href="{{ route('subservices.engage') }}"  style="display:block;padding:0.45rem 1rem;border-radius:0.4rem;font-size:0.82rem;text-decoration:none;{{ request()->routeIs('subservices.engage')  ? 'color:#b6c4ff;background:rgba(41,98,255,0.1);' : 'color:#b7c8e1;opacity:0.65;' }}">Dot.Engage</a>
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <span class="material-symbols-rounded">hub</span>
+            </div>
+            <div>
+                <div class="brand-name">InfoDot</div>
+                <div class="brand-status">
+                    <div class="live-dot"></div>
+                    <span class="brand-subtitle">Ecosystem Hub</span>
                 </div>
             </div>
+        </div>
 
+        <div class="sidebar-divider"></div>
+
+        <nav class="sidebar-nav">
+            <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <span class="material-symbols-rounded nav-icon">dashboard</span>
+                Dashboard
+            </a>
+            <div class="nav-section-label">Platforms</div>
+            <a href="{{ route('ecosystem.widget') }}" class="nav-item {{ request()->routeIs('ecosystem.widget') ? 'active' : '' }}">
+                <span class="material-symbols-rounded nav-icon">apps</span>
+                All Platforms
+            </a>
+            <div class="sidebar-divider" style="margin:10px 0;"></div>
+            <a href="{{ route('profile.show') }}" class="nav-item {{ request()->routeIs('profile.show') ? 'active' : '' }}">
+                <span class="material-symbols-rounded nav-icon">manage_accounts</span>
+                Profile & Settings
+            </a>
         </nav>
 
-        {{-- Bottom links + user --}}
-        <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(67,70,86,0.2);display:flex;flex-direction:column;gap:0.2rem;">
-            <a href="#" class="sidebar-link">
-                <span class="material-symbols-outlined" style="font-size:21px;">settings</span>
-                <span>Settings</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <span class="material-symbols-outlined" style="font-size:21px;">contact_support</span>
-                <span>Support</span>
-            </a>
-
-            @auth
-            <div style="margin-top:1.25rem;padding:0 0.75rem;display:flex;align-items:center;gap:0.75rem;">
-                <img src="{{ Auth::user()->profile_photo_path ? Auth::user()->profile_photo_url : Auth::user()->avatar() }}"
-                     style="height:38px;width:38px;border-radius:9999px;object-fit:cover;border:2px solid rgba(41,98,255,0.25);flex-shrink:0;"
-                     alt="{{ Auth::user()->name }}" />
-                <div style="display:flex;flex-direction:column;min-width:0;">
-                    <span style="font-size:0.75rem;font-weight:700;color:#dae2fd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ Auth::user()->name }}</span>
-                    <span style="font-size:0.6rem;color:#8d90a2;text-transform:uppercase;letter-spacing:0.06em;margin-top:1px;">Pro Workspace</span>
+        @auth
+        <div class="sidebar-footer">
+            <div class="user-row">
+                <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                <div style="min-width:0;flex:1;">
+                    <div class="user-name">{{ Auth::user()->name }}</div>
+                    <div class="user-team">{{ Auth::user()->currentTeam->name ?? 'Personal' }}</div>
                 </div>
             </div>
-            @endauth
         </div>
+        @endauth
     </aside>
 
-    {{-- ═══════════════════════════════════════════
-         FIXED TOP BAR (right of sidebar)
-    ═══════════════════════════════════════════ --}}
+    <header class="topbar">
+        <div class="topbar-title">
+            @isset($header){{ $header }}@else InfoDot
+            @endisset
+        </div>
+        @auth
+        <span class="topbar-team">{{ Auth::user()->currentTeam->name ?? 'Personal' }}</span>
+        @endauth
+        <a href="{{ route('profile.show') }}" class="topbar-btn" title="Profile">
+            <span class="material-symbols-rounded">account_circle</span>
+        </a>
+    </header>
+
     @livewire('navigation-menu')
 
-    {{-- ═══════════════════════════════════════════
-         MAIN CONTENT
-    ═══════════════════════════════════════════ --}}
-    <div style="margin-left:288px;padding-top:80px;min-height:100vh;background:#0b1326;" id="app">
-        @if (isset($header))
-            <div style="padding:2rem 2.5rem 0;">
-                {{ $header }}
-            </div>
-        @endif
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
-
-    {{-- Floating status badge --}}
-    <div style="position:fixed;bottom:1.75rem;right:1.75rem;display:flex;align-items:center;gap:0.6rem;padding:0.45rem 1rem;background:rgba(49,57,77,0.65);backdrop-filter:blur(20px);border-radius:9999px;border:1px solid rgba(67,70,86,0.2);z-index:50;">
-        <div style="width:7px;height:7px;border-radius:9999px;background:#22c55e;animation:pulse 2s infinite;"></div>
-        <span style="font-size:0.6rem;font-weight:700;color:rgba(218,226,253,0.55);text-transform:uppercase;letter-spacing:0.18em;">Workspace Online</span>
+    <div class="content-wrap">
+        <main>{{ $slot }}</main>
     </div>
 
     @stack('modals')
     @livewireScripts
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://kit.fontawesome.com/8690917e6c.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@yaireo/tagify"></script>
-    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <script src="{{ asset('js/tags.js') }}" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/addSteps.js') }}" crossorigin="anonymous"></script>
-    <script>
-        function changeAtiveTab(event,tabID){
-            let element = event.target;
-            while(element.nodeName !== "A"){ element = element.parentNode; }
-            ulElement = element.parentNode.parentNode;
-            aElements = ulElement.querySelectorAll("li > a");
-            tabContents = document.getElementById("content-tabs-id").querySelectorAll(".tab-content > div");
-            for(let i = 0; i < aElements.length; i++){
-                tabContents[i].classList.add("hidden");
-                tabContents[i].classList.remove("block");
-            }
-            document.getElementById(tabID).classList.remove("hidden");
-            document.getElementById(tabID).classList.add("block");
-        }
-    </script>
 </body>
 </html>
